@@ -1,0 +1,115 @@
+/* Container layout */
+.supplier-page {
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text);
+}
+
+/* Message styles */
+.message {
+  background: var(--card);
+  color: var(--primary-600);
+  padding: 12px 20px;
+  border-left: 4px solid var(--primary);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+.supplier-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+/* Header Title */
+.supplier-header h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Add Supplier Button */
+.add-sup button {
+  background: linear-gradient(135deg, var(--primary), var(--primary-600));
+  color: white;
+  padding: 0 20px;
+  height: 44px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.3);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  border: none;
+}
+
+.add-sup button:hover {
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+  box-shadow: 0 0 24px rgba(37, 99, 235, 0.6);
+  transform: scale(1.05);
+}
+
+/* Supplier List Container */
+.supplier-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+
+/* Each Supplier Card */
+.supplier-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.supplier-item:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: scale(1.01);
+}
+
+/* Supplier Name */
+.supplier-item span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Actions (Edit/Delete) */
+.supplier-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.supplier-actions button {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.supplier-actions button:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: scale(1.05);
+}

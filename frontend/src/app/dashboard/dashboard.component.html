@@ -1,0 +1,115 @@
+<div class="dash">
+
+	<!-- Page header -->
+	<header class="dash-header">
+		<div class="head-left">
+			<h1>Dashboard</h1>
+			<p class="sub">Realtime overview of activity & inventory</p>
+		</div>
+	</header>
+
+	<!-- KPI cards -->
+	<section class="kpis">
+		<article class="kpi">
+			<div class="kpi-icon">🟢</div>
+			<div class="kpi-body">
+				<div class="kpi-title">Users online right now</div>
+				<div class="kpi-value">{{ usersOnlineRightNow }}</div>
+			</div>
+		</article>
+
+		<article class="kpi">
+			<div class="kpi-icon">👥</div>
+			<div class="kpi-body">
+				<div class="kpi-title">Total Users</div>
+				<div class="kpi-value">{{ totalUsers }}</div>
+			</div>
+		</article>
+
+		<article class="kpi">
+			<div class="kpi-icon">📦</div>
+			<div class="kpi-body">
+				<div class="kpi-title">Products</div>
+				<div class="kpi-value">{{ totalProducts }}</div>
+			</div>
+		</article>
+
+		<article class="kpi">
+			<div class="kpi-icon">🏭</div>
+			<div class="kpi-body">
+				<div class="kpi-title">Suppliers</div>
+				<div class="kpi-value">{{ totalSuppliers }}</div>
+			</div>
+		</article>
+	</section>
+
+	<!-- Charts grid -->
+	<section class="charts">
+		<article class="panel">
+			<div class="panel-head">
+				<h3>Session By Browser</h3>
+			</div>
+			<div class="panel-body">
+				<ngx-charts-pie-chart [results]="sessionsByBrowser" [view]="[1200,260]" [legend]="true" [labels]="true"
+					[doughnut]="false" [scheme]="schemeCool">
+				</ngx-charts-pie-chart>
+			</div>
+		</article>
+
+		<article class="panel">
+			<div class="panel-head">
+				<h3>Page views / second (proxy: transactions last minute)</h3>
+			</div>
+			<div class="panel-body">
+				<ngx-charts-bar-vertical [results]="pvsSeries" [view]="viewTall" [scheme]="schemeBars" [xAxis]="true"
+					[yAxis]="true" [legend]="false" [showXAxisLabel]="true" [showYAxisLabel]="true" xAxisLabel="Time"
+					yAxisLabel="Count">
+				</ngx-charts-bar-vertical>
+			</div>
+		</article>
+
+		<article class="panel">
+			<div class="panel-head">
+				<h3>Most Active Pages (proxy: Transaction Types)</h3>
+			</div>
+			<div class="panel-body">
+				<ngx-charts-bar-vertical [results]="mostActive" [view]="viewTall" [scheme]="schemeCool" [xAxis]="true"
+					[yAxis]="true" [legend]="false" [showXAxisLabel]="true" [showYAxisLabel]="true" xAxisLabel="Type"
+					yAxisLabel="Count">
+				</ngx-charts-bar-vertical>
+			</div>
+		</article>
+
+		<!-- Users by Country -->
+		<article class="panel" *ngIf="usersByCountryLoaded">
+			<div class="panel-head">
+				<h3>Users By Country</h3>
+			</div>
+
+			<div class="panel-body" *ngIf="hasUsersByCountry; else emptyCountry">
+				<ngx-charts-pie-chart [results]="usersByCountry" [view]="[1200,260]" [legend]="true" [labels]="true"
+					[doughnut]="true" [scheme]="schemeCool">
+				</ngx-charts-pie-chart>
+			</div>
+
+			<ng-template #emptyCountry>
+				<div class="empty-pie">
+					<div class="emoji">🌍</div>
+					<p>No country data yet</p>
+				</div>
+			</ng-template>
+		</article>
+
+		<article class="panel span-2">
+			<div class="panel-head">
+				<h3>Users at a Time (proxy: transactions per minute last hour)</h3>
+			</div>
+			<div class="panel-body">
+				<ngx-charts-line-chart [results]="[{ name:'Traffic', series: usersAtTime }]" [view]="[1200,320]"
+					[scheme]="schemeMulti" [xAxis]="true" [yAxis]="true" [legend]="false" [showXAxisLabel]="true"
+					[showYAxisLabel]="true" xAxisLabel="Time" yAxisLabel="Count" [autoScale]="true">
+				</ngx-charts-line-chart>
+			</div>
+		</article>
+	</section>
+</div>

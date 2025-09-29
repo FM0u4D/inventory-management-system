@@ -1,0 +1,89 @@
+<div class="product-page">
+    <!-- PRODUCT HEADER -->
+    <div class="product-header">
+        <!-- SEARCH BAR -->
+        <input type="text" [(ngModel)]="searchQuery" (input)="loadAndFilterProducts()" placeholder="Search ..."
+            class="product-search" />
+
+        <p *ngIf="message" class="message">{{message}}</p>
+
+        <div class="header-actions">
+            <button class="view-toggle-btn" (click)="toggleView()">
+                <i class="bx" [ngClass]="isGridView ? 'bx-list-ul' : 'bx-grid-alt'"></i>
+                {{ isGridView ? 'Table View' : 'Grid View' }}
+            </button>
+
+            <button class="add-product-btn" (click)="navigateToAddProductPage()">
+                <i class="bx bx-plus"></i> Add New
+            </button>
+        </div>
+    </div>
+
+    <!-- PRODUCT LIST -->
+    <!-- Grid View -->
+    <div class="product-list" *ngIf="isGridView && filteredProducts.length > 0">
+        <div class="product-item neon-border" *ngFor="let product of filteredProducts">
+            <div class="product-image-container">
+                <img [src]="product.imageSrc" class="product-image" (error)="onImageError($event)"
+                    [alt]="product.name" />
+            </div>
+
+            <div class="product-info">
+                <h3 class="name">{{ product.name }}</h3>
+                <p class="sku">SKU: <span>{{ product.sku }}</span></p>
+                <p class="price">💰 {{ product.price }} DH</p>
+                <p class="quantity">📦 Stock: {{ product.stockQuantity }}</p>
+            </div>
+
+            <!-- Product Actions -->
+            <div class="product-actions">
+                <button class="edit-btn" (click)="navigateToEditProductPage(product.id)">
+                    <i class="bx bx-edit-alt"></i> Edit
+                </button>
+                <button class="delete-btn" (click)="handleProductDelete(product.id)">
+                    <i class="bx bx-trash"></i> Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table View -->
+    <table class="product-table" *ngIf="!isGridView && filteredProducts.length > 0">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="!isGridView" cdkDropList (cdkDropListDropped)="dropTableRow($event)">
+            <tr *ngFor="let product of filteredProducts" class="draggable-row" cdkDrag (mousedown)="onRowMouseDown($event)"
+                (cdkDragStarted)="onDragStarted($event)" (cdkDragMoved)="onDragMoved($event)"
+                (cdkDragEnded)="onDragEnded()">
+                <td>
+                    <img [src]="product.imageSrc" (error)="onImageError($event)" class="table-thumb" />
+                </td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.sku }}</td>
+                <td>{{ product.price }} DH</td>
+                <td>{{ product.stockQuantity }}</td>
+                <td class="actions">
+                    <div class="action-wrapper">
+                        <button class="edit-btn" (click)="navigateToEditProductPage(product.id)">
+                            <i class="bx bx-edit-alt"></i>
+                        </button>
+                        <button class="delete-btn" (click)="handleProductDelete(product.id)">
+                            <i class="bx bx-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="onPageChange($event)">
+    </app-pagination>
+</div>

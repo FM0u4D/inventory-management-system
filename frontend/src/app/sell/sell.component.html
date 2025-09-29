@@ -1,0 +1,30 @@
+<div class="sell-form-page">
+	<p *ngIf="message" class="message">{{ message }}</p>
+	<h1>Sell Product</h1>
+
+	<form (ngSubmit)="handleSubmit()">
+		<div class="form-group">
+			<label for="">Select Product</label>
+			<select name="productId" class="form-control" [(ngModel)]="productId" id="">
+				<option value="">Select a product</option>
+				<option *ngFor="let product of products" [value]="product.id">
+					{{ product.name }}
+				</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="">Description</label>
+			<input type="text" [(ngModel)]="description" name="description" class="form-control"
+				placeholder="Describe the sale..." />
+		</div>
+
+		<div class="form-group">
+			<label for="">Quantity</label>
+			<input type="text" [(ngModel)]="quantity" name="quantity" class="form-control"
+				(input)="enforceDigitsOnly($event)" placeholder="Enter quantity" />
+		</div>
+
+		<button type="submit" class="glow-submit-button">Sell Product</button>
+	</form>
+</div>

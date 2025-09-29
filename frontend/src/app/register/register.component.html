@@ -1,0 +1,31 @@
+<div class="register-page">
+    <div class="register-card">
+        <!-- LEFT: Form -->
+        <div class="register-form">
+            <h2>Create Account</h2>
+            <p>Please fill in the form to register</p>
+            <p *ngIf="message" class="message">{{ message }}</p>
+
+            <form (ngSubmit)="handleSubmit()">
+                <input type="text" placeholder="Name ..." [(ngModel)]="formData.name" name="name" required />
+                <input type="email" placeholder="Email ..." [(ngModel)]="formData.email" name="email" required />
+                <input type="password" placeholder="Password ..." [(ngModel)]="formData.password" name="password"
+                    required />
+                <input type="number" placeholder="Phone Number ..." [(ngModel)]="formData.phoneNumber"
+                    name="phoneNumber" required />
+
+                <button type="submit">Register</button>
+            </form>
+
+            <p class="login-link">
+                Already have an account?
+                <a routerLink="/login">Login</a>
+            </p>
+        </div>
+
+        <!-- RIGHT: Image -->
+        <div class="register-illustration">
+            <img src="assets/images/register-illustration.png" alt="Register Illustration" />
+        </div>
+    </div>
+</div>

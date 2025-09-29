@@ -1,0 +1,92 @@
+<div class="txn-page">
+
+	<!-- Inline alert (keeps your existing binding) -->
+	<div *ngIf="message" class="alert">{{ message }}</div>
+
+	<!-- Header -->
+	<header class="txn-header">
+		<div class="title">
+			<span class="dot"></span>
+			<h1>Transactions</h1>
+			<span class="sub">History & status overview</span>
+		</div>
+
+		<!-- Search bar -->
+		<form class="search" (submit)="$event.preventDefault(); handleSearch()">
+			<input type="text" [(ngModel)]="searchInput" name="q" placeholder="Search by product, SKU, status…" />
+			<button type="button" (click)="handleSearch()">Search</button>
+		</form>
+	</header>
+
+	<!-- Table -->
+	<section class="txn-card" *ngIf="transactions.length > 0; else emptyState">
+		<div class="table-wrap">
+			<table class="txn-table">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Status</th>
+						<th class="num">Total Price</th>
+						<th class="num">Total Products</th>
+						<th>Date</th>
+						<th class="actions">Actions</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr *ngFor="let transaction of transactions" class="row">
+						<td>
+							<span class="chip" [class.chip-purchase]="transaction.transactionType === 'PURCHASE'"
+								[class.chip-sell]="transaction.transactionType === 'SELL'">
+								{{ transaction.transactionType }}
+							</span>
+						</td>
+
+						<td>
+							<span class="badge"
+								[class.badge-success]="transaction.status?.toLowerCase() === 'completed' || transaction.status?.toLowerCase() === 'success'"
+								[class.badge-warning]="transaction.status?.toLowerCase() === 'pending'"
+								[class.badge-danger]="transaction.status?.toLowerCase() === 'failed'">
+								{{ transaction.status }}
+							</span>
+						</td>
+
+						<td class="num">
+							{{ transaction.totalPrice | number : '1.0-2' }}
+						</td>
+
+						<td class="num">
+							{{ transaction.totalProducts }}
+						</td>
+
+						<td>
+							{{ transaction.createdAt | date : 'medium' }}
+						</td>
+
+						<td class="actions">
+							<button class="btn ghost" (click)="navigateTOTransactionsDetailsPage(transaction.id)">
+								View details
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<!-- Pagination -->
+	<div class="pagination-bar">
+		<app-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="onPageChange($event)">
+		</app-pagination>
+	</div>
+
+
+	<!-- Empty state -->
+	<ng-template #emptyState>
+		<div class="empty">
+			<div class="emoji">🗂️</div>
+			<h3>No transactions found</h3>
+			<p>Try adjusting your search or come back after recording purchase/sell operations.</p>
+		</div>
+	</ng-template>
+</div>

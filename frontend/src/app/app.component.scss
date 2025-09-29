@@ -1,0 +1,382 @@
+/* ==============================
+   Global CSS Variables
+   ============================== */
+:host {
+	--sb-bg: #0f1b2d;
+	--sb-border: #1d2a3f;
+	--sb-hover: rgba(47, 111, 237, 0.12);
+	--accent: #2f6fed;
+	--txt: #e8f0ff;
+	--muted: #90a3c7;
+}
+
+/* ==============================
+   App Shell Layout
+   ============================== */
+.app-shell {
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	min-height: 100vh;
+	transition: grid-template-columns 0.35s ease;
+}
+
+.app-shell.sidebar-collapsed {
+	grid-template-columns: 100px 1fr;
+}
+.router-outlet-wrapper{
+	margin-top: 2rem;
+}
+/* ==============================
+   Sidebar Styles
+   ============================== */
+.sidebar {
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	background: var(--sb-bg);
+	border-right: 1px solid var(--sb-border);
+	display: flex;
+	flex-direction: column;
+	padding: 12px 10px;
+	overflow: hidden;
+	transition: width 0.35s ease, padding 0.35s ease;
+}
+
+.sidebar-footer {
+	margin-top: auto;
+	padding: 10px 12px;
+	transition: padding 0.35s ease;
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 9px;
+	height: 70px;
+}
+
+/* ==============================
+   Logo Area
+   ============================== */
+.logo-container {
+	position: relative;
+	height: 76px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+}
+
+.logo-img {
+	height: 46px;
+	width: auto;
+	display: block;
+	margin-left: 14px;
+}
+
+.logo-overlay {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 65%;
+	height: 100%;
+	background: var(--sb-bg);
+	transition: transform 0.35s ease;
+	pointer-events: none;
+}
+
+.logo-overlay.hide {
+	transform: translateX(100%);
+}
+
+/* ==============================
+   Navigation Menu
+   ============================== */
+.menu {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.menu-section {
+	display: flex;
+	align-items: center;
+	height: 36px;
+	gap: 8px;
+}
+
+.menu-section .label-text {
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #94a3b8;
+	white-space: nowrap;
+	text-shadow: 0 0 3px #94a3b8, 0 0 6px #b7c6da, 0 0 10px #d8e2f0;
+	transition: text-shadow 0.25s ease, color 0.25s ease;
+}
+
+.menu-section .label-text.hidden {
+	visibility: hidden;
+}
+
+.menu-section .glow-line {
+	flex: 1 1 auto !important;
+	height: 1px;
+	align-self: center;
+	margin-left: 8px;
+	background-color: #94a3b8;
+	box-shadow: 0 0 2px #94a3b8, 0 0 4px #b7c6da, 0 0 6px #d8e2f0;
+	opacity: 1;
+	transition: box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.sidebar-collapsed .menu .menu-section:first-of-type .glow-line,
+.sidebar-collapsed .menu .menu-section:first-of-type {
+	display: none;
+	pointer-events: none;
+	user-select: none;
+}
+
+.sidebar-collapsed .menu-section span {
+	display: none;
+}
+
+/* ==============================
+   Menu Items
+   ============================== */
+.menu-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 0 10px;
+	margin: 0;
+	border-radius: 12px;
+	color: var(--muted);
+	text-decoration: none;
+	border: 1px solid transparent;
+	transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.menu-item .icon {
+	width: 46px;
+	height: 46px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.menu-item:hover {
+	background: var(--sb-hover);
+	color: var(--txt);
+	transform: translateX(2px);
+}
+
+.menu-item.active {
+	color: var(--txt);
+	background: rgba(47, 111, 237, 0.15);
+	border-color: rgba(47, 111, 237, 0.35);
+	box-shadow: inset 0 0 0 1px rgba(47, 111, 237, 0.25);
+}
+
+.sidebar-collapsed .menu-item .text,
+.sidebar-collapsed .logout-btn .text {
+	display: none;
+}
+
+/* ==============================
+   Logout Button
+   ============================== */
+.logout-btn {
+	width: 100%;
+	padding: 10px 12px;
+	border-radius: 12px;
+	border: 1px solid #ff5f5f;
+	background: rgba(255, 0, 0, 0.1);
+	color: #ff5f5f;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+	justify-content: center;
+	margin-top: 8px;
+	transition: background 0.2s ease;
+}
+
+.logout-btn:hover {
+	background: rgba(255, 0, 0, 0.2);
+}
+
+/* ==============================
+   Main Content Area
+   ============================== */
+.content {
+	min-height: 100vh;
+	padding: 24px;
+	overflow-y: auto;
+}
+
+body {
+	overflow: hidden;
+}
+
+/* ==============================
+   Auth Screens
+   ============================== */
+.auth-screen {
+	height: 100vh;
+	display: grid;
+	place-items: center;
+	background: #f5f7fb;
+	width: 100%;
+	transition: background 0.3s ease-in-out;
+}
+
+/* ==============================
+   Section Headers (clickable)
+   ============================== */
+.menu-section.clickable {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	font-weight: 700;
+	color: var(--accent);
+	padding: 4px 8px;
+	transition: background 0.2s ease;
+}
+
+.menu-section.clickable:hover {
+	background: rgba(255, 255, 255, 0.06);
+	border-radius: 6px;
+}
+
+.group-chevron {
+	margin-right: 6px;
+	color: #94a3b8;
+	filter: drop-shadow(0 0 2px #94a3b8) drop-shadow(0 0 4px #b7c6da) drop-shadow(0 0 6px #d8e2f0);
+	transition: filter 0.25s ease, color 0.25s ease;
+}
+
+.group-chevron:hover {
+	color: #a8b8cc;
+	filter: drop-shadow(0 0 4px #94a3b8) drop-shadow(0 0 8px #b7c6da) drop-shadow(0 0 16px #d8e2f0);
+}
+
+.menu-section.clickable:hover .group-chevron {
+	transform: scale(1.15);
+}
+
+/* ==============================
+   Toggle Buttons
+   ============================== */
+.sticky-note-toggle,
+.bracelet-toggle {
+	position: fixed;
+	top: calc(50% - 40px);
+	left: 280px;
+	width: 0;
+	height: 80px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	z-index: 400;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: left 0.3s ease, transform 0.2s ease;
+}
+
+.sticky-note-toggle::before,
+.bracelet-toggle::before {
+	content: "";
+	position: absolute;
+	width: 50px;
+	height: 100%;
+	border-right: 4px solid #39ff14;
+	border-radius: 60px;
+	filter: drop-shadow(0 0 8px #39ff14);
+	transition: border-color 0.3s ease, filter 0.3s ease;
+}
+
+.sticky-note-toggle lucide-icon,
+.bracelet-toggle lucide-icon {
+	position: relative;
+	color: #39ff14;
+	transition: color 0.3s ease, transform 0.3s ease;
+	z-index: 1;
+	right: -8px;
+}
+
+.app-shell.sidebar-collapsed .sticky-note-toggle,
+.app-shell.sidebar-collapsed .bracelet-toggle {
+	left: 100px;
+}
+
+.app-shell.sidebar-collapsed .sticky-note-toggle::before,
+.app-shell.sidebar-collapsed .bracelet-toggle::before {
+	border-color: var(--muted);
+	filter: none;
+}
+
+.app-shell.sidebar-collapsed .sticky-note-toggle lucide-icon,
+.app-shell.sidebar-collapsed .bracelet-toggle lucide-icon {
+	color: var(--muted);
+}
+
+.sticky-note-toggle:hover::before,
+.bracelet-toggle:hover::before {
+	filter: drop-shadow(0 0 14px #39ff14);
+}
+
+.sticky-note-toggle:hover lucide-icon,
+.bracelet-toggle:hover lucide-icon {
+	transform: scale(1.08);
+	color: #39ff14;
+}
+
+/* =========================
+   Sidebar Collapse Behavior
+   ========================= */
+/* 1. Hide the entire first section (MAIN) when collapsed */
+.sidebar-collapsed .menu .menu-section:first-of-type {
+	display: none !important;
+}
+
+/* 2. For other sections, hide only the label text, keep glow line */
+.sidebar-collapsed .menu-section .label-text {
+  text-shadow: none;
+  color: #94a3b8;
+}
+
+/* 3. Ensure glow-line still glows */
+.sidebar-collapsed .menu-section .glow-line {
+	opacity: 1;
+	box-shadow: 0 0 2px #94a3b8, 0 0 4px #b7c6da, 0 0 6px #d8e2f0;
+	background-color: #94a3b8;
+}
+
+.sidebar-collapsed .menu-section .label-text.hidden {
+	visibility: hidden;
+}
+
+.menu-section.clickable:hover:not(.sidebar-collapsed .menu-section) .label-text,
+.menu-section.clickable:hover:not(.sidebar-collapsed .menu-section) .glow-line,
+.menu-section.clickable:hover:not(.sidebar-collapsed .menu-section) .group-chevron {
+	text-shadow: inherit;
+	filter: inherit;
+	box-shadow: inherit;
+}
+
+/* =================================
+   Global Page Title Style (Dynamic)
+   ================================= */
+.page-title-glow {
+	font-size: 32px;
+	font-weight: 700;
+	color: #e0edff;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	text-shadow: 0 0 5px #94a3b8, 0 0 10px #b7c6da, 0 0 20px #d8e2f0;
+	text-align: left;
+	margin-left: 30px;
+}

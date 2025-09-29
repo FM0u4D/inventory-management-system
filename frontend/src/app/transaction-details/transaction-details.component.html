@@ -1,0 +1,179 @@
+<div class="txn-details">
+
+	<!-- Inline alert (keeps your binding) -->
+	<p *ngIf="message" class="alert">{{ message }}</p>
+
+	<!-- Content -->
+	<ng-container *ngIf="transaction as t; else emptyState">
+
+		<!-- Hero / header -->
+		<header class="hero">
+			<div class="title">
+				<h1>Transaction <span *ngIf="t.id">#{{ t.id }}</span></h1>
+				<div class="chips">
+					<span class="chip" [class.chip-purchase]="t.transactionType === 'PURCHASE'"
+						[class.chip-sell]="t.transactionType === 'SELL'">
+						{{ t.transactionType }}
+					</span>
+
+					<span class="badge"
+						[class.badge-success]="t.status?.toLowerCase() === 'completed' || t.status?.toLowerCase() === 'success'"
+						[class.badge-warning]="t.status?.toLowerCase() === 'pending' || t.status?.toLowerCase() === 'processing'"
+						[class.badge-danger]="t.status?.toLowerCase() === 'canceled' || t.status?.toLowerCase() === 'failed'">
+						{{ t.status }}
+					</span>
+				</div>
+			</div>
+
+			<div class="meta">
+				<span class="meta-item">Created: {{ t.createdAt | date:'medium' }}</span>
+				<span *ngIf="t.updatedAt" class="meta-item">Updated: {{ t.updatedAt | date:'medium' }}</span>
+			</div>
+		</header>
+
+		<!-- Main grid -->
+		<section class="grid">
+
+			<!-- Transaction Informations -->
+			<article class="card">
+				<h2>Transaction Informations</h2>
+				<dl class="kv">
+					<div>
+						<dt>Type</dt>
+						<dd>{{ t.transactionType }}</dd>
+					</div>
+					<div>
+						<dt>Status</dt>
+						<dd>{{ t.status }}</dd>
+					</div>
+					<div>
+						<dt>Description</dt>
+						<dd>{{ t.description || '—' }}</dd>
+					</div>
+					<div>
+						<dt>Total Products</dt>
+						<dd>{{ t.totalProducts }}</dd>
+					</div>
+					<div>
+						<dt>Total Price</dt>
+						<dd>{{ t.totalPrice | currency }}</dd>
+					</div>
+					<div>
+						<dt>Created At</dt>
+						<dd>{{ t.createdAt | date:'short' }}</dd>
+					</div>
+					<div *ngIf="t.updatedAt">
+						<dt>Updated At</dt>
+						<dd>{{ t.updatedAt | date:'short' }}</dd>
+					</div>
+				</dl>
+			</article>
+
+			<!-- Product Information -->
+			<article class="card">
+				<h2>Product Informations</h2>
+				<div class="product">
+					<div class="product-img" *ngIf="productImageUrl">
+						<img [src]="productImageUrl" alt="Product image" />
+					</div>
+					<dl class="kv">
+						<div>
+							<dt>Name</dt>
+							<dd>{{ productName }}</dd>
+						</div>
+						<div>
+							<dt>SKU</dt>
+							<dd>{{ productSku }}</dd>
+						</div>
+						<div>
+							<dt>Price</dt>
+							<dd>{{ productPrice | currency }}</dd>
+						</div>
+						<div>
+							<dt>Stock Quantity</dt>
+							<dd>{{ productStock }}</dd>
+						</div>
+						<div>
+							<dt>Description</dt>
+							<dd>{{ productDescription }}</dd>
+						</div>
+					</dl>
+				</div>
+			</article>
+
+			<!-- Supplier Informations -->
+			<article class="card">
+				<h2>Supplier Informations</h2>
+				<dl class="kv">
+					<div>
+						<dt>Name</dt>
+						<dd>{{ supplierName }}</dd>
+					</div>
+					<div>
+						<dt>Address</dt>
+						<dd>{{ supplierAddress }}</dd>
+					</div>
+				</dl>
+			</article>
+
+			<!-- User Informations -->
+			<article class="card">
+				<h2>User Informations</h2>
+				<dl class="kv">
+					<div>
+						<dt>Name</dt>
+						<dd>{{ t.user?.name }}</dd>
+					</div>
+					<div>
+						<dt>Email</dt>
+						<dd>{{ t.user?.email }}</dd>
+					</div>
+					<div>
+						<dt>Phone Number</dt>
+						<dd>{{ t.user?.phoneNumber }}</dd>
+					</div>
+					<div>
+						<dt>Role</dt>
+						<dd>{{ t.user?.role }}</dd>
+					</div>
+				</dl>
+			</article>
+
+			<!-- Supplier Information -->
+			<article class="card" *ngIf="isAdmin">
+				<h2>Supplier Information</h2>
+				<dl class="kv">
+					<div>
+						<dt>Name</dt>
+						<dd>{{ t.supplier?.name }}</dd>
+					</div>
+					<div>
+						<dt>Address</dt>
+						<dd>{{ t.supplier?.address || '—' }}</dd>
+					</div>
+				</dl>
+			</article>
+		</section>
+
+		<!-- Status update -->
+		<section class="card status-update">
+			<label for="statusSel">Status</label>
+			<select id="statusSel" [(ngModel)]="status">
+				<option value="PENDING">PENDING</option>
+				<option value="PROCESSING">PROCESSING</option>
+				<option value="COMPLETED">COMPLETED</option>
+				<option value="CANCELED">CANCELED</option>
+			</select>
+			<button (click)="handleUpdateStatus()">Update Status</button>
+		</section>
+	</ng-container>
+
+	<!-- Empty state -->
+	<ng-template #emptyState>
+		<div class="empty">
+			<div class="emoji">📄</div>
+			<h3>No transaction loaded</h3>
+			<p>Return to the list and select a transaction to view its details.</p>
+		</div>
+	</ng-template>
+</div>

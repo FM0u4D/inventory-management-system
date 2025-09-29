@@ -1,0 +1,71 @@
+.profile-page {
+  padding: 32px;
+  max-width: 600px;
+  margin: 40px auto;
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+}
+
+.message {
+  background-color: rgba(220, 38, 38, 0.1);
+  color: #ef4444;
+  padding: 12px 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.profile-card {
+  background-color: var(--card);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  transition: box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+}
+
+.profile-card h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 28px;
+  color: var(--primary);
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0f172a;
+  border-radius: 12px;
+  padding: 14px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s ease;
+}
+
+.profile-item:hover {
+  background-color: #1e293b;
+}
+
+.profile-item label {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.profile-item span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-600);
+}

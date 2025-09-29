@@ -1,0 +1,46 @@
+<div class="purchase-form-page">
+	<p *ngIf="message" class="message">{{ message }}</p>
+	<h1>Receive Inventory</h1>
+
+	<form (ngSubmit)="handleSubmit()">
+		<!-- PRODUCT -->
+		<div class="form-group">
+			<label for="product">Select Product</label>
+			<select name="productId" id="product" [(ngModel)]="productId">
+				<option value="">Select a product</option>
+				<option *ngFor="let product of products" [value]="product.id">
+					{{ product.name }}
+				</option>
+			</select>
+		</div>
+
+		<!-- SUPPLIER -->
+		<div class="form-group">
+			<label for="supplier">Select Supplier</label>
+			<select name="supplierId" id="supplier" [(ngModel)]="supplierId">
+				<option value="">Select a Supplier</option>
+				<option *ngFor="let supplier of suppliers" [value]="supplier.id">
+					{{ supplier.name }}
+				</option>
+			</select>
+		</div>
+
+		<!-- DESCRIPTION -->
+		<div class="form-group">
+			<label for="description">Description</label>
+			<input id="description" type="text" name="description" [(ngModel)]="description"
+				placeholder="Optional description" />
+		</div>
+
+		<!-- QUANTITY -->
+		<div class="form-group">
+			<label for="quantity">Quantity</label>
+			<input id="quantity" type="text" name="quantity" [(ngModel)]="quantity" min="1"
+				(input)="enforceDigitsOnly($event)" placeholder="Enter quantity" />
+
+		</div>
+
+		<!-- SUBMIT BUTTON -->
+		<button type="submit" class="purchase-btn">Purchase Product</button>
+	</form>
+</div>

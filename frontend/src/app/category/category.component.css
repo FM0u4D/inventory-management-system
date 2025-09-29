@@ -1,0 +1,209 @@
+.category-page {
+  padding: 24px;
+  background: var(--sb-bg);
+  min-height: 100vh;
+  color: var(--txt);
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  margin: 0 12px;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--sb-border);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.category-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-shadow: 0 0 3px #94a3b8, 0 0 6px #b7c6da;
+}
+
+/* Add Category Form */
+.add-cat {
+  display: flex;
+  gap: 12px;
+}
+
+.add-cat input {
+  padding: 10px 14px;
+  border: 1px solid var(--sb-border);
+  border-radius: 8px;
+  background: #1a2537;
+  color: var(--txt);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-cat input:focus {
+  outline: none;
+  border-color: #94a3b8;
+  box-shadow: 0 0 6px #94a3b8;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #94a3b8;
+  color: #0f1b2d;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.btn-icon:hover {
+  background: #b7c6da;
+  transform: translateY(-2px);
+}
+
+/* Category List */
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1a2537;
+  border: 1px solid var(--sb-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.category-item:hover {
+  background: #22324a;
+  transform: translateX(2px);
+}
+
+.drag-handle {
+  display: flex;
+  align-items: center;
+  margin-right: 14px;
+  cursor: grab;
+  color: #94a3b8;
+  opacity: 0.7;
+  transition: opacity 0.25s ease;
+}
+
+.category-item:active .drag-handle {
+  cursor: grabbing;
+  opacity: 1;
+}
+
+.category-name {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e8f0ff;
+  text-shadow: 0 0 2px #94a3b8;
+}
+
+/* Actions */
+.category-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit,
+.btn-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.btn-edit {
+  background: #94a3b8;
+  color: #0f1b2d;
+}
+
+.btn-edit:hover {
+  background: #b7c6da;
+  transform: translateY(-2px);
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #e44f5e;
+  transform: translateY(-2px);
+}
+
+/* Message Banner */
+.message {
+  background: rgba(220, 38, 38, 0.12);
+  color: #ef4444;
+  padding: 10px 30px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* Empty State */
+.empty-state {
+  margin-top: 40px;
+  text-align: center;
+  color: #94a3b8;
+  opacity: 0.8;
+}
+
+.empty-state lucide-icon {
+  display: block;
+  margin: 0 auto 8px;
+  opacity: 0.7;
+}
+
+/* Drag preview style */
+.cdk-drag-preview {
+  background: #22324a;
+  border-radius: 10px;
+  padding: 14px 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transform: rotate(2deg);
+}
+
+/* Placeholder where item was dragged from */
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+/* Animate during dragging */
+.cdk-drag-animating {
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Drag handle styling */
+.drag-handle {
+  cursor: grab;
+  user-select: none;
+  margin-right: 14px;
+  opacity: 0.7;
+  transition: opacity 0.25s ease;
+}
+
+.category-item:active .drag-handle {
+  cursor: grabbing;
+  opacity: 1;
+}

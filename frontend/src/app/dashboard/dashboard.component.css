@@ -1,0 +1,131 @@
+/* Page shell */
+.dash {
+  padding: 20px;
+  color: var(--text);
+}
+
+/* Header */
+.dash-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.dash-header h1 {
+  font-size: 28px;
+  letter-spacing: 0.3px;
+  margin: 0;
+}
+.dash-header .sub {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* KPI cards */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.kpi {
+  grid-column: span 3; /* 4 cards per row on desktop */
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(2, 8, 23, 0.06);
+}
+.kpi-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  font-size: 18px;
+}
+.kpi-title {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+}
+.kpi-value {
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+/* Charts grid */
+.charts {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+.panel {
+  grid-column: span 6;
+  background: var(--card);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(2, 8, 23, 0.06);
+  overflow: hidden;
+}
+.panel.span-2 {
+  grid-column: span 12; /* wide chart */
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+.panel-head h3 {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+}
+.panel-body {
+  padding: 10px 8px; /* small padding so charts fit tightly */
+}
+
+/* dashboard.component.css */
+.empty-pie {
+  background: var(--card);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 12px;
+  padding: 24px 12px;
+  text-align: center;
+  color: var(--muted);
+}
+.empty-pie .emoji {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+/* Responsiveness */
+@media (max-width: 1100px) {
+  .kpi {
+    grid-column: span 6;
+  } /* 2 per row */
+  .panel {
+    grid-column: span 12;
+  }
+}
+@media (max-width: 640px) {
+  .kpi {
+    grid-column: span 12;
+  } /* 1 per row */
+  .dash-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

@@ -1,0 +1,12 @@
+/* Reuse global tokens; panel/button visuals come from styles.css */
+.close {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--muted);
+}
+.close:hover {
+  color: var(--text);
+}

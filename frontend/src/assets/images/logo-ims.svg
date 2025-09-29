@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="273" height="54" viewBox="5 16 273 54" fill="none">
+  <!-- Box Base -->
+  <rect x="5" y="16" width="47.6" height="47.6" rx="8" fill="#2E3A59"/>
+
+  <!-- Bar Chart -->
+  <rect x="14" y="50" width="4" height="8" rx="1" fill="#4FC3F7"/>
+  <rect x="21" y="46" width="4" height="12" rx="1" fill="#81D4FA"/>
+  <rect x="28" y="42" width="4" height="16" rx="1" fill="#B3E5FC"/>
+
+  <!-- Gear -->
+  <circle cx="41" cy="28" r="5" fill="#FF6F61"/>
+  <path d="M41 22 L41 19 M41 37 L41 34 M35 28 L32 28 M50 28 L47 28
+           M37.5 23.5 L35.5 21.5 M44.5 34.5 L46.5 36.5
+           M37.5 32.5 L35.5 34.5 M44.5 21.5 L46.5 23.5"
+        stroke="#FF6F61" stroke-width="1.2"/>
+
+  <!-- IMS Text -->
+  <text x="75" y="39" font-family="Poppins, sans-serif" font-size="30" fill="#2E3A59" font-weight="bold">IMS</text>
+
+  <!-- Subtitle -->
+  <text x="75" y="58" font-family="Poppins, sans-serif" font-size="14" fill="#607D8B">
+    Inventory Management System
+  </text>
+</svg>

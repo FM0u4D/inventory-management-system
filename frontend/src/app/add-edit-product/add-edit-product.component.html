@@ -1,0 +1,95 @@
+<div class="product-form-wrapper">
+	<div class="product-form-card">
+		<form [formGroup]="form" (ngSubmit)="handleSubmit($event)" enctype="multipart/form-data"
+			class="product-form-grid">
+			<!-- Row 1 -->
+			<div class="form-field">
+				<label>Product Name</label>
+				<input type="text" formControlName="name" placeholder="Enter product name" />
+			</div>
+
+			<div class="form-field">
+				<label>SKU</label>
+				<input type="text" formControlName="sku" placeholder="Enter SKU" />
+			</div>
+
+			<!-- Row 2 -->
+			<div class="form-field">
+				<label>Stock Quantity</label>
+				<input type="text" formControlName="stockQuantity" inputmode="numeric" pattern="[0-9]*" maxlength="6"
+					(input)="enforceDigitsOnly($event)" placeholder="Enter quantity" />
+			</div>
+
+			<div class="form-field">
+				<label>Price</label>
+				<input type="text" formControlName="price" inputmode="decimal" pattern="[0-9]*" maxlength="8"
+					(input)="enforceDigitsOnly($event)" placeholder="Enter price" />
+			</div>
+
+			<!-- Category -->
+			<div class="form-field full">
+				<label>Category</label>
+				<select formControlName="categoryId">
+					<option value="">-- Select Category --</option>
+					<option *ngFor="let category of categories" [value]="category.id">
+						{{ category.name }}
+					</option>
+				</select>
+			</div>
+
+			<!-- Description -->
+			<div class="form-field full">
+				<label>Description</label>
+				<textarea formControlName="description" placeholder="Product description..."></textarea>
+			</div>
+
+			<!-- Image Upload -->
+			<!--div class="form-field full">
+				<label>Product Image</label>
+				<input type="file" (change)="onImageSelected($event)" />
+				<div *ngIf="imageUrl" class="image-preview">
+					<img [src]="imageUrl" alt="Preview" />
+				</div>
+			</div-->
+
+			<!-- Modern Product Image Upload -->
+			<div class="form-field full">
+				<label>Product Image</label>
+
+				<div class="image-upload-zone" (click)="fileInput.click()" (dragover)="onDragOver($event)"
+					(drop)="onFileDrop($event)">
+					<ng-container *ngIf="imageUrl; else uploadPrompt">
+						<div class="preview-wrapper">
+							<img [src]="imageUrl" alt="Preview" />
+							<button type="button" class="remove-btn" (click)="clearImage($event)">×</button>
+						</div>
+					</ng-container>
+
+					<ng-template #uploadPrompt>
+						<div class="image-upload-inner">
+							<div class="upload-icon">📁</div>
+							<div class="upload-text">
+								<p>Click or drag image here</p>
+								<span>PNG, JPG up to 2MB</span>
+							</div>
+						</div>
+					</ng-template>
+
+					<input type="file" #fileInput (change)="onImageSelected($event)" accept="image/*" hidden />
+				</div>
+			</div>
+
+			<!-- Message -->
+			<div *ngIf="message" class="form-message full">
+				{{ message }}
+			</div>
+
+			<!-- Submit Button -->
+			<div class="form-submit full">
+				<button type="submit" [disabled]="form.invalid">
+					{{ isEditing ? 'Update Product' : 'Add Product' }}
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

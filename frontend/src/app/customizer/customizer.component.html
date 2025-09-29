@@ -1,0 +1,64 @@
+<!-- Sticky vertical button -->
+<button class="customize-toggle" (click)="togglePanel()" aria-label="Customize">
+    <span class="gear">⚙️</span>
+</button>
+
+<!-- Dim backdrop -->
+<div class="customizer-overlay" *ngIf="open" (click)="closePanel()"></div>
+
+<!-- Slide-out panel -->
+<section class="customizer-panel" [class.open]="open" role="dialog" aria-label="Customize Panel">
+    <header>
+        <h3>Customize</h3>
+        <button class="close" (click)="closePanel()" aria-label="Close">×</button>
+    </header>
+
+    <div class="body">
+        <!-- Theme Mode -->
+        <div class="section">
+            <h4>Theme mode</h4>
+            <div class="row">
+                <label class="radio"><input type="radio" name="theme" [(ngModel)]="themeMode" value="auto"
+                        (ngModelChange)="applyThemeMode()"> Auto</label>
+                <label class="radio"><input type="radio" name="theme" [(ngModel)]="themeMode" value="light"
+                        (ngModelChange)="applyThemeMode()"> Light</label>
+                <label class="radio"><input type="radio" name="theme" [(ngModel)]="themeMode" value="dark"
+                        (ngModelChange)="applyThemeMode()"> Dark</label>
+            </div>
+        </div>
+
+        <!-- Layout -->
+        <div class="section">
+            <h4>Fluid layout</h4>
+            <label class="switch">
+                <input type="checkbox" [(ngModel)]="fluid" (ngModelChange)="applyFluid()">
+                <span>Stretch content to viewport width</span>
+            </label>
+        </div>
+
+        <!-- Navigation position -->
+        <div class="section">
+            <h4>Navigation Position</h4>
+            <div class="row">
+                <label class="radio"><input type="radio" name="navpos" [(ngModel)]="navPosition" value="combo"
+                        (ngModelChange)="applyNavPosition()"> Combo</label>
+                <label class="radio"><input type="radio" name="navpos" [(ngModel)]="navPosition" value="vertical"
+                        (ngModelChange)="applyNavPosition()"> Side</label>
+                <label class="radio"><input type="radio" name="navpos" [(ngModel)]="navPosition" value="top"
+                        (ngModelChange)="applyNavPosition()"> Top</label>
+            </div>
+        </div>
+
+        <!-- Vertical navbar style -->
+        <div class="section">
+            <h4>Vertical Navbar Style</h4>
+            <label class="select">
+                <select [(ngModel)]="vnavStyle" (ngModelChange)="applyVnavStyle()">
+                    <option value="default">Default</option>
+                    <option value="darker">Darker</option>
+                    <option value="vibrant">Vibrant</option>
+                </select>
+            </label>
+        </div>
+    </div>
+</section>

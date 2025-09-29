@@ -1,0 +1,116 @@
+<ng-container *ngIf="isAuth() && !isAuthRoute(); else loginOnly">
+    <div class="app-shell" [class.sidebar-collapsed]="collapsed">
+        <aside class="sidebar" [class.collapsed]="collapsed" #sidebar>
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="assets/images/logo-ims.svg" alt="IMS Logo" class="logo-img" />
+                </div>
+                <!-- Sticky-note style toggle glued to sidebar -->
+                <button class="sticky-note-toggle" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+                    <lucide-icon [name]="collapsed ? 'ChevronRight' : 'ChevronLeft'" size="22"></lucide-icon>
+                </button>
+            </div>
+
+            <nav class="menu">
+                <!-- MAIN -->
+                <div class="menu-section clickable" (click)="toggleGroup('main')">
+                    <lucide-icon *ngIf="!collapsed" [name]="expanded.main ? 'ChevronDown' : 'ChevronRight'" size="14"
+                        class="group-chevron"></lucide-icon>
+                    <span class="label-text" [class.hidden]="collapsed">Main</span>
+                    <div class="glow-line"></div>
+                </div>
+
+                <div *ngIf="expanded.main">
+                    <a class="menu-item" routerLink="/dashboard" routerLinkActive="active"
+                        [attr.title]="collapsed ? 'Dashboard' : null">
+                        <span class="icon"><lucide-icon name="LayoutDashboard" size="20"></lucide-icon></span>
+                        <span class="text" *ngIf="!collapsed">Dashboard</span>
+                    </a>
+                    <a class="menu-item" routerLink="/calendar" [attr.title]="collapsed ? 'Calendar' : null">
+                        <span class="icon"><lucide-icon name="Calendar" size="20"></lucide-icon></span>
+                        <span class="text" *ngIf="!collapsed">Calendar</span>
+                    </a>
+                </div>
+
+                <!-- APP -->
+                <div class="menu-section clickable" (click)="toggleGroup('app')">
+                    <lucide-icon *ngIf="!collapsed" [name]="expanded.app ? 'ChevronDown' : 'ChevronRight'" size="14"
+                        class="group-chevron"></lucide-icon>
+                    <span class="label-text" [class.hidden]="collapsed">App</span>
+                    <div class="glow-line"></div>
+                </div>
+                <div *ngIf="expanded.app">
+                    <a class="menu-item" *ngIf="isAdmin()" routerLink="/category" routerLinkActive="active"
+                        [attr.title]="collapsed ? 'Categories' : null">
+                        <span class="icon"><lucide-icon name="Folders" size="20"></lucide-icon></span>
+                        <span class="text" *ngIf="!collapsed">Categories</span>
+                    </a>
+                    <a class="menu-item" *ngIf="isAdmin()" routerLink="/product" routerLinkActive="active"
+                        [attr.title]="collapsed ? 'Products' : null">
+                        <span class="icon"><lucide-icon name="Package" size="20"></lucide-icon></span>
+                        <span class="text" *ngIf="!collapsed">Products</span>
+                    </a>
+                    <a class="menu-item" *ngIf="isAdmin()" routerLink="/supplier" routerLinkActive="active"
+                        [attr.title]="collapsed ? 'Suppliers' : null">
+                        <span class="icon"><lucide-icon name="Truck" size="20"></lucide-icon></span>
+                        <span class="text" *ngIf="!collapsed">Suppliers</span>
+                    </a>
+                    <a class="menu-item" routerLink="/transactions" routerLinkActive="active"
+                        [attr.title]="collapsed ? 'Transactions' : null">
+                        <span class="icon"><lucide-icon name="Shuffle" size="20"></lucide-icon></span>
+                        <span class="text" *ngIf="!collapsed">Transactions</span>
+                    </a>
+                    <a class="menu-item" routerLink="/purchase" routerLinkActive="active"
+                        [attr.title]="collapsed ? 'Purchase' : null">
+                        <span class="icon"><lucide-icon name="ShoppingCart" size="20"></lucide-icon></span>
+                        <span class="text" *ngIf="!collapsed">Purchase</span>
+                    </a>
+                    <a class="menu-item" routerLink="/sell" routerLinkActive="active"
+                        [attr.title]="collapsed ? 'Sell' : null">
+                        <span class="icon"><lucide-icon name="CreditCard" size="20"></lucide-icon></span>
+                        <span class="text" *ngIf="!collapsed">Sell</span>
+                    </a>
+                </div>
+
+                <!-- USER -->
+                <div class="menu-section clickable" (click)="toggleGroup('user')">
+                    <lucide-icon *ngIf="!collapsed" [name]="expanded.user ? 'ChevronDown' : 'ChevronRight'" size="14"
+                        class="group-chevron"></lucide-icon>
+                    <span class="label-text" [class.hidden]="collapsed">User</span>
+                    <div class="glow-line"></div>
+                </div>
+                <div *ngIf="expanded.user">
+                    <a class="menu-item" routerLink="/profile" routerLinkActive="active"
+                        [attr.title]="collapsed ? 'Profile' : null">
+                        <span class="icon"><lucide-icon name="User" size="20"></lucide-icon></span>
+                        <span class="text" *ngIf="!collapsed">Profile</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="logout-btn" (click)="logOut()" [attr.title]="collapsed ? 'Logout' : null">
+                    <span class="icon"><lucide-icon name="LogOut" size="20"></lucide-icon></span>
+                    <span class="text" *ngIf="!collapsed">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div *ngIf="pageTitle" class="page-title-glow">
+                {{ pageTitle }}
+            </div>
+            <div class="router-outlet-wrapper">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+    </div>
+
+    <app-customizer [(open)]="customizerOpen" (close)="closeCustomizer()"></app-customizer>
+</ng-container>
+
+<ng-template #loginOnly>
+    <div class="auth-screen">
+        <router-outlet></router-outlet>
+    </div>
+</ng-template>

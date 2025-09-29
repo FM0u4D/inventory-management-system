@@ -1,0 +1,258 @@
+/* Page wrapper */
+.txn-page {
+  padding: 20px;
+  color: var(--text);
+}
+
+/* Alert message (uses your message binding) */
+.alert {
+  background: rgba(239, 68, 68, 0.1);
+  color: #fecaca;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+/* Header */
+.txn-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.txn-header .title {
+  display: grid;
+  gap: 2px;
+}
+.txn-header .title h1 {
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: 0.3px;
+}
+.txn-header .title .sub {
+  color: var(--muted);
+  font-size: 13px;
+}
+.txn-header .title .dot {
+  display: none;
+}
+
+/* Search */
+.search {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 6px 18px rgba(2, 8, 23, 0.06);
+}
+.search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  padding: 10px 12px;
+  min-width: 260px;
+}
+.search input::placeholder {
+  color: var(--muted);
+}
+.search button {
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+.search button:hover {
+  background: var(--primary-700);
+}
+
+/* Card */
+.txn-card {
+  background: var(--card);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(2, 8, 23, 0.06);
+}
+
+/* Table */
+.table-wrap {
+  overflow: auto;
+  border-radius: 10px;
+}
+.txn-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 820px;
+}
+.txn-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: linear-gradient(0deg, var(--card), var(--card));
+  color: var(--muted);
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  font-size: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+.txn-table tbody tr {
+  transition: background 0.2s ease, transform 0.06s ease;
+}
+.txn-table tbody td {
+  padding: 14px;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.16);
+  vertical-align: middle;
+}
+.txn-table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.06);
+}
+.txn-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.txn-table .actions {
+  text-align: right;
+}
+
+/* Chips & badges */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  background: rgba(148, 163, 184, 0.12);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+.chip-purchase {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #a7f3d0;
+}
+.chip-sell {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  border: 1px solid transparent;
+  color: var(--text);
+  background: rgba(148, 163, 184, 0.12);
+}
+.badge-success {
+  background: rgba(16, 185, 129, 0.14);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #86efac;
+}
+.badge-warning {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fcd34d;
+}
+.badge-danger {
+  background: rgba(239, 68, 68, 0.14);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+/* Buttons */
+.btn.ghost {
+  background: transparent;
+  color: var(--primary);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--primary);
+}
+.btn.ghost:hover {
+  background: rgba(59, 130, 246, 0.12);
+}
+
+/* Empty state */
+.empty {
+  background: var(--card);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 14px;
+  padding: 36px 18px;
+  text-align: center;
+  color: var(--muted);
+  box-shadow: 0 6px 18px rgba(2, 8, 23, 0.06);
+}
+.empty .emoji {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.empty h3 {
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.pagination-bar {
+  position: fixed;
+  bottom: 1rem;
+  padding: 10px 0;
+  background: var(--bg);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 24px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  right: 40%;
+  transform: translateX(50%);
+  z-index: 5;
+}
+
+/* Responsive: switch to stacked “cards” look on narrow screens */
+@media (max-width: 760px) {
+  .txn-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search input {
+    min-width: 0;
+    width: 100%;
+  }
+  .txn-table {
+    min-width: 0;
+  }
+  .txn-table thead {
+    display: none;
+  }
+  .txn-table tr.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+    padding: 12px 10px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .txn-table tbody td {
+    border: none;
+    padding: 4px 0;
+  }
+  .txn-table tbody td.actions {
+    grid-column: 1 / -1;
+    text-align: right;
+  }
+  .txn-table tbody td.num {
+    text-align: left;
+  }
+}

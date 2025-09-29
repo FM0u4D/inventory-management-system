@@ -1,0 +1,62 @@
+:host {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.forbidden-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+
+.forbidden-card {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.forbidden-card h1 {
+  font-size: 100px;
+  margin-bottom: 0;
+  color: #ff3030;
+}
+
+.forbidden-card h2 {
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+.forbidden-card p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #3498db;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #2980b9;
+}

@@ -1,0 +1,37 @@
+<div class="category-page">
+	<!-- HEADER -->
+	<header class="category-header">
+		<div class="message">This is an error to be rectify !</div>
+		<div class="add-cat">
+			<input type="text" [(ngModel)]="categoryName" placeholder="Enter category name..." />
+			<button *ngIf="!isEditing" class="btn-icon" (click)="addCategory()">
+				Add
+			</button>
+			<button *ngIf="isEditing" class="btn-icon" (click)="editCategory()">
+				Save
+			</button>
+		</div>
+	</header>
+
+	<!-- CATEGORY LIST -->
+	<ul *ngIf="categories.length > 0" class="category-list" cdkDropList (cdkDropListDropped)="drop($event)"
+		[cdkDropListDisabled]="!isAdmin()">
+		<li *ngFor="let category of categories" class="category-item" cdkDrag [cdkDragDisabled]="!isAdmin()">
+			<!-- Drag handle visible only for admins -->
+			<span class="drag-handle" cdkDragHandle title="Drag to reorder" *ngIf="isAdmin()">☰</span>
+
+			<!-- Category name -->
+			<span class="category-name">{{ category.name }}</span>
+
+			<!-- Actions -->
+			<div class="category-actions">
+				<button class="btn-edit" (click)="handleEditCategory(category)" *ngIf="isAdmin()">Edit</button>
+				<button class="btn-delete" (click)="handleDeleteCategory(category.id)" *ngIf="isAdmin()">Delete</button>
+			</div>
+		</li>
+	</ul>
+
+	<div *ngIf="!categories.length" class="empty-state">
+		<p>No categories found. Add a new one above.</p>
+	</div>
+</div>

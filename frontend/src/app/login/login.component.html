@@ -1,0 +1,27 @@
+<div class="login-page">
+	<div class="login-card">
+		<div class="login-illustration">
+			<img src="assets/images/login-illustration.png" alt="Login Illustration" />
+		</div>
+
+		<div class="login-form">
+			<h2>Welcome Back</h2>
+			<p>Please login to your account</p>
+			<p *ngIf="message" class="message">{{ message }}</p>
+
+			<form (ngSubmit)="handleSubmit()">
+				<input type="email" placeholder="Email" [(ngModel)]="formData.email" name="email" required />
+
+				<input type="password" placeholder="Password" [(ngModel)]="formData.password" name="password"
+					required />
+
+				<button type="submit">Login</button>
+			</form>
+
+			<p class="signup-link">
+				Don't have an account?
+				<a routerLink="/register">Register</a>
+			</p>
+		</div>
+	</div>
+</div>

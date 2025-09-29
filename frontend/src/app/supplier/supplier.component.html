@@ -1,0 +1,23 @@
+<div class="supplier-page">
+	<p *ngIf="message" class="message">{{ message }}</p>
+
+	<!-- SUPPLIER HEADER -->
+	<div class="supplier-header">
+		<h1>Suppliers</h1>
+		<div class="add-sup">
+			<button (click)="navigateToAddSupplierPage()">Add Supplier</button>
+		</div>
+	</div>
+
+	<!-- SUPPLIER LIST -->
+	<ul class="supplier-list" *ngIf="suppliers.length > 0">
+		<li *ngFor="let supplier of suppliers" class="supplier-item" [attr.key]="supplier.id">
+			<span>{{ supplier.name }}</span>
+
+			<div class="supplier-actions">
+				<button (click)="navigateToEditSupplierPage(supplier.id)">Edit</button>
+				<button (click)="handleDeleteSupplier(supplier.id)">Delete</button>
+			</div>
+		</li>
+	</ul>
+</div>

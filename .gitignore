@@ -1,0 +1,34 @@
+# Angular
+node_modules/
+dist/
+.angular/
+coverage/
+*.log
+
+# Spring Boot / Java
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE & OS
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Tools
+.gradle/
+.mvn/wrapper/maven-wrapper.jar
+!mvnw
+!mvnw.cmd
+!gradlew
+!gradlew.bat
+!gradle/wrapper/gradle-wrapper.jar
+
+# Env
+.env
