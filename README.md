@@ -217,4 +217,4 @@ ng serve
 
 ## 📄 License
 
-MIT License. See `LICENSE`.
+Apache 2.0 License. See `LICENSE`.
