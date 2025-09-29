@@ -73,7 +73,7 @@ FLUSH PRIVILEGES;
 ```
 
 ### 3) Backend setup
-Create `backend/src/main/resources/application.yml`:
+Create `backend/src/main/resources/application.properties`:
 ```yaml
 server:
   port: 5050
